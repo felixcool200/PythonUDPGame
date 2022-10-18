@@ -1,0 +1,30 @@
+0 SEGLETTER
+
+1 PlayerX PlayerY PlayerHealth PlayerLoadedAmmo PlayerCarriyingAmmo OpponantX OpponantY 
+
+AmountOfAmmoCrates_N 
+AmmoCrate1X AmmoCrate1Y
+AmmoCrate2X AmmoCrate2Y
+.
+.
+.
+AmmoCrateNX AmmoCrateNY 
+
+AmountOfHealthCrates_M
+HealthCrate1X Healthrate1Y
+HealthCrate2X HealthCrate2Y
+.
+.
+.
+HealthCrateMX HealthCrateMY 
+
+AmountOfProjectiles_L
+Projectile1X Projectile1Y
+Projectile2X Projectile2Y
+.
+.
+.
+ProjectileLX ProjectileLY 
+SEGLETTER
+
+2 iHaveWon? SEGLETTER 
