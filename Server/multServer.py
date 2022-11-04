@@ -383,10 +383,12 @@ def handleRequest(world,key,address,segDig):
 	world.players[playerID].lastPacketRecived = int(time.time() * 1000)
 
 	# See if the client ask for new packet
-	if(world.players[playerID].lastSegLetter == segDig):
+	if((world.players[playerID].lastSegLetter == '9' and segDig != '0') and\
+		(world.players[playerID].lastSegLetter != None and chr(ord(world.players[playerID].lastSegLetter)+1) != segDig)):
 		# Resend latest world (The button has already beed registerd but packet lost on the way)
 		print("Same Segletter for player",playerID)
 		return getResponseString(world,playerID)
+
 
 	# Update latest recived message
 	world.players[playerID].lastSegLetter = segDig
