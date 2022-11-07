@@ -1,6 +1,5 @@
 # Skrivet av Felix Söderman
 # Designad av Felix Söderman & Carl Nordengren
-from multiprocessing.sharedctypes import Value
 import socket
 import time
 from enum import Enum
@@ -28,7 +27,7 @@ class Player():
 			self.y = 17 #20-3
 		self.address = address
 		self.latestInput = ""
-		self.lastSegLetter = None
+		self.lastsegDigit = None
 		self.lastPacketRecived = int(time.time() * 1000)
 		self.disconnected = False
 		self.loaded = 3
@@ -383,15 +382,15 @@ def handleRequest(world,key,address,segDig):
 	world.players[playerID].lastPacketRecived = int(time.time() * 1000)
 
 	# See if the client ask for new packet
-	if((world.players[playerID].lastSegLetter == '9' and segDig != '0') and\
-		(world.players[playerID].lastSegLetter != None and chr(ord(world.players[playerID].lastSegLetter)+1) != segDig)):
+	if((world.players[playerID].lastsegDigit == '9' and segDig != '0') and\
+		(world.players[playerID].lastsegDigit != None and chr(ord(world.players[playerID].lastsegDigit)+1) != segDig)):
 		# Resend latest world (The button has already beed registerd but packet lost on the way)
-		print("Same Segletter for player",playerID)
+		print("Same segDigit for player",playerID)
 		return getResponseString(world,playerID)
 
 
 	# Update latest recived message
-	world.players[playerID].lastSegLetter = segDig
+	world.players[playerID].lastsegDigit = segDig
 	
 	if(key != "b"):
 		world.players[playerID].latestInput = key
@@ -422,7 +421,6 @@ def main():
 	while(True):
 		message, address = serverSocket.recvfrom(3)
 		message = message.decode()
-		#print("Recived:",message)
 		key, segDig = message
 		output = handleRequest(world,key,address, segDig)
 		sendString(serverSocket,address,output + segDig)

@@ -19,8 +19,8 @@ class connManager():
 		self.address = address
 		self.segDig = 0
 		self.status = GameState.NotStarted
-		self.result = "None"
-		self.output = "Welcome Player"
+		self.result = ""
+		self.output = ""
 		self.keybinds ={
 			"0":"0",
 			"b":"b",
@@ -41,9 +41,8 @@ class connManager():
 			return "Congrats you won!!!"
 		elif self.result == "0":
 			return "You lost, Better luck next time"
-		elif self.result == None:
-			return "None won??? Error"
-		return "HOW DID YOU GET HERE WAT????: " + str(self.result)
+		else:
+			raise(ValueError("Error: invalid result")) 
 
 	def sendRequest(self,data):
 		attemtps = 0
@@ -287,11 +286,10 @@ def getPort(useDefault,default):
 
 def main():
 	
-	defaultIP = "wireguard.xilef.win"
 	defaultIP = "0.0.0.0"
 	defaultPORT = 5555
 
-	#useDefault = input("Do you want to use default host and port(" + defaultIP + ":" + str(defaultPORT) + ")?(Y/n): ")
+	useDefault = input("Do you want to use default host and port(" + defaultIP + ":" + str(defaultPORT) + ")?(Y/n): ")
 	useDefault = "Y"
 	host = getHost(useDefault,defaultIP)
 	port = getPort(useDefault,defaultPORT)
