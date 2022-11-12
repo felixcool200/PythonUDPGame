@@ -1,5 +1,4 @@
-# Skrivet av Felix Söderman
-# Designad av Felix Söderman & Carl Nordengren
+# Author Felix Söderman
 import socket
 import time
 from enum import Enum
@@ -55,7 +54,7 @@ class connManager():
 			except socket.error:
 				#No answer (This means packet was lost on its way there (or reply was lost). Resend with same segDig)
 				attemtps += 1
-				self.clientSocket.settimeout(attemtps*2) # Timeoutes are 1,2,4,8 sek
+				self.clientSocket.settimeout(TIMEOUT*attemtps*2) # Timeoutes are 1,2,4,8 sek
 				if(attemtps > 3):
 					raise(TimeoutError("Connection lost after 3 retransmissions"))
 				continue

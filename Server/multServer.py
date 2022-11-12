@@ -1,5 +1,4 @@
-# Skrivet av Felix Söderman
-# Designad av Felix Söderman & Carl Nordengren
+# Author Felix Söderman
 import socket
 import time
 from enum import Enum
